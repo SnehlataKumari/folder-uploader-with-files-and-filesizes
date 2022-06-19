@@ -1,16 +1,15 @@
 function handleInputChange(event) {
-  let existingTable = document.getElementsByTagName("table");
-//  debugger
-//   if(existingTable.length > 0) {
-//     removeExistingTable(existingTable);
-//     return
-//   }
+  let existingTable = document.querySelectorAll("table")[0];
+  let tbl = existingTable;
+  if(existingTable) {
+    removeExistingTable(existingTable);
+  }
   let files = event.target.files;
   document.getElementById("file-numbers").innerText = files.length + " Files";
   var reminder = document.getElementById("reminder");
   reminder.innerText = " ";
   // creates a <table> element and a <tbody> element
-  const tbl = document.createElement("table");
+  tbl = document.createElement("table");
   const tblBody = document.createElement("tbody");
   // creates a table row
   const row = document.createElement("tr");
@@ -52,7 +51,9 @@ function getFileSize(bytes) {
   return `${(bytes / (1024 ** i)).toFixed(1)} ${sizes[i]}`
 }
 function removeExistingTable(existingTable) {
-  let tbody = document.getElementsByTagName("tbody");
-  existingTable.removeChild(tbody);
+  let tbody = document.querySelectorAll("tbody")[0];
+  if(tbody) {
+    existingTable.removeChild(tbody)
+  }
 }
 
